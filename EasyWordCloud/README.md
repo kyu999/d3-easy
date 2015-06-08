@@ -1,3 +1,0 @@
-# EasyWordCloud
-
-- How to use

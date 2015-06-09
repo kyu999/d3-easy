@@ -1,4 +1,3 @@
-
 var fill = d3.scale.category20();
 
 // windowオブジェクトのプロパティにすることでmakeWordCloudを他のファイルから呼び出せるようにする

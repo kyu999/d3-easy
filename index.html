@@ -114,15 +114,19 @@ $().ready(function(){
 <h3>
 <a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Parameters Format</h3>
 
-<ul>
-  <li>(Must)Data: [ {"word": String, "value": Number}, {...}, {...} ]</li>
-  <li>(Must)Css Selector: String | (e.g.) "#my_id_dom", ".my_class_dom"</li>
-  <li>(Must)Svg Scale: Number</li>
-  <li>Svg Class Name: string but not css selector | (e.g.) "my_dom"</li>
-  <li>Font Family: String</li>
-  <li>Rotate Words Or Not: boolean like true or false</li>
-  <li>Color Converting Function: function(number){ return some color code; } | (e.g.) function(i){ if(i > 0){ return "#696969"; }else{ return "#f0f8ff"; }</li>
-</ul>
+<table>
+  <tr><th>Parameter</th><th>Must Or Not</th><th>Type of Format</th><th>Example</th></tr>
+  <tr><td>Data</td><td>Must</td><td>[ {"word": String, "value": Number}, {...}, {...} ]<td>[
+        {"word": "田中", "value": 3}, 
+        {"word": "太郎", "value": 13}, 
+        {"word": "西尾", "value": 8},
+    ]</td></tr>
+  <tr><td>Css Selector</td><td>Must</td><td>String<td>"#my_id_dom", ".my_class_dom"</td></tr>
+  <tr><td>Svg Scale</td><td>Must</td><td>Number<td>500</td></tr>
+  <tr><td>Svg Class Name</td><td>Optional</td><td>string but not css selector<td>"my_dom"</td></tr>
+  <tr><td>Font Family</td><td>Optional</td><td>String<td>"Impact"</td></tr>
+  <tr><td>Color Converting Function</td><td>Optional</td><td>function(number){ return some color code as string; }<td>function MyColoring(i){ if(i > 0){ return "#696969"; }else{ return "#f0f8ff"; }</td></tr>
+</table>
 
 <h3>
 <a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>For More Details</h3>

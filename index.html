@@ -118,10 +118,10 @@ $().ready(function(){
   <li>Data: [ {"word": String, "value": Number}, {...}, {...} ]</li>
   <li>Css Selector: String | (e.g.) "#my_id_dom", ".my_class_dom"</li>
   <li>Svg Scale: Number</li>
-  <li>Svg Class Name: string like css selector</li>
+  <li>Svg Class Name: string but not css selector | (e.g.) "my_dom"</li>
   <li>Font Family: String</li>
   <li>Rotate Words Or Not: boolean like true or false</li>
-  <li>Color Converting Function: function(i){ return someColor(i); }</li>
+  <li>Color Converting Function: function(number){ return some color code; } | (e.g.) function(i){ if(i > 0){ return "#696969"; }else{ return "#f0f8ff"; }</li>
 </ul>
 
 <h3>

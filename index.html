@@ -75,7 +75,7 @@
   <li>Call the makeWordCloud function(with more options): <pre><code>window.makeWordCloud(data, css_selector, svgscale, svg_class, font-family, rotate words or not, color converting function)</code></pre></li>
   </ul>
 
-<p>Below is the simplest case, but be careful. If you do not give name to your svg, easywordcloud automatically think all "svg" as wordcluod canvas. So, it may updates or destroy the other svgs. I recommend to name it.</p>
+<p>Below is the simplest case, but be careful. EasyWordCloud uses the svg class name as an identifier. If you do not give name to your svg, easywordcloud automatically think all "svg" as wordcluod canvas. So, it may updates or destroy the other svgs. I recommend to name it. Also, when you wanna create another wordcloud at same time, they should be named separately. Do not give them same names.</p>
 
 <pre><code>// simple example
 

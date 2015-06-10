@@ -70,10 +70,14 @@
 <ul>
   <li>Load DOM at beginning of js script: <pre><code>$().ready(function(){ // write your code here })</code></pre>
   <li>Prepare your data and make sure the format: <pre><code>data = [ {"word": String, "value": Number}, {...}, {...} ]</code></pre></li>
-  <li>Call the makeWordCloud function: <pre><code>window.makeWordCloud(data, css selector, size of svg, font-family)</code></pre></li>
+  <li>Call the makeWordCloud function(simplest version): <pre><code>window.makeWordCloud(data, css selector, size of svg, font-family)</code></pre>
+  </li>
+  <li>Call the makeWordCloud function(with more options): <pre><code>window.makeWordCloud(data, css_selector, svgscale, svg_class, font-family, rotate words or not, color converting function)</code></pre></li>
   </ul>
 
-<pre><code>// example
+<p>Below is the simplest case</p>
+
+<pre><code>// simple example
 
 $().ready(function(){
 
@@ -83,10 +87,42 @@ $().ready(function(){
         {"word": "西尾", "value": 8},
     ]
     
-    window.makeWordCloud(data, "body", 200, "Impact")
+    window.makeWordCloud(data, "body", 200)
 
 })
 </code></pre>
+
+<p>With more options</p>
+
+<pre><code>// more option example
+
+$().ready(function(){
+
+    data = [
+        {"word": "田中", "value": 3}, 
+        {"word": "太郎", "value": 13}, 
+        {"word": "西尾", "value": 8},
+    ]
+
+    var my_color = d3.scale.category20();
+
+    window.makeWordCloud(data, "body", 500, "my_svg", "Impact", true, my_color)
+
+})
+</code></pre>
+
+<h3>
+<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Options Format</h3>
+
+<ul>
+  <li>Data: [ {"word": String, "value": Number}, {...}, {...} ]</li>
+  <li>Css Selector: String | (e.g.) "#my_id_dom", ".my_class_dom"</li>
+  <li>Svg Scale: Number</li>
+  <li>Svg Class Name: string like css selector</li>
+  <li>Font Family: String</li>
+  <li>Rotate Words Or Not: boolean like true or false</li>
+  <li>Color Converting Function: function(i){ return someColor(i); }</li>
+</ul>
 
 <h3>
 <a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>For More Details</h3>

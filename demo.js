@@ -37,7 +37,7 @@ $().ready(function(){
     var my_color = d3.scale.category20();
 
     // makeWordCloud(data, css selector that you wanna insert in, scale of svg, class name of svg, font-family, rotate or not, your color converting function)
-    window.makeWordCloud(data, "body", 500, "my_svg", "Impact", false, my_color)
+    makeWordCloud(data, "body", 500, "my_svg", "Impact", false, my_color)
 
     // [ svg class, font-family, rotate words or not, color function ] are optional.
     // the simplest way => window.makeWordCloud(data, "body", 500)

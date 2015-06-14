@@ -1,6 +1,7 @@
 function makeWordCloud(data, parent_elem, svgscale, svg_class, font, rotate_word, my_colors){
 
-      var fill = d3.scale.category20();
+      var color_converter = null
+      if(my_colors){ color_converter = my_colors }else{ color_converter = d3.scale.category20() }
 
       function draw(words) {
         d3.select(parent_elem).append("svg")
@@ -14,7 +15,7 @@ function makeWordCloud(data, parent_elem, svgscale, svg_class, font, rotate_word
           .enter().append("text")
             .style("font-size", function(d) { return d.size + "px"; })
             .style("font-family", font)
-            .style("fill", function(d, i) { if(my_colors){ return my_colors(i); }else{ return fill(i); } })
+            .style("fill", function(d, i) { return color_converter(i); })
             .attr("text-anchor", "middle")
             .attr("transform", function(d) {
               return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";

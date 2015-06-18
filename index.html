@@ -8,16 +8,17 @@
     <link rel="stylesheet" href="stylesheets/core.css" media="screen">
     <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
     <link rel="stylesheet" href="stylesheets/github-light.css">
+    <link rel="stylesheet" href = "bower_components/d3-easy/hierarchical_edge/demo.css">
 
-    <script type="text/javascript" src="javascripts/modernizr.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+
     <script type="text/javascript">
       $(document).ready(function () {
         $('#main_content').headsmart()
       })
     </script>
-    <title>Easywordcloud by kyu999</title>
+    <title>d3-easy by kyu999</title>
   </head>
 
   <body>
@@ -27,7 +28,7 @@
       <header>
         <span class="ribbon-outer">
           <span class="ribbon-inner">
-            <h1>Easywordcloud</h1>
+            <h1>d3-easy</h1>
             <h2></h2>
           </span>
           <span class="left-tail"></span>
@@ -47,92 +48,45 @@
 
       <section id="main_content">
         <h3>
-<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to EasyWordCloud</h3>
+<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to d3-easy</h3>
 
-<p>EasyWordCloud is the easiest way to create beautiful word cloud for all of your projects. You don't need to install anything complicated. Just load the js files and call one function. That's it!!</p>
+<p>d3-easy provides easier way to vidualize your data uniquely. Unlike the other d3 project, d3-easy tries to offer you the interface to create graphs without knowledge about d3.js.</p>
 
 <h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Steps to prepare</h3>
+<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install -- take either ways</h3>
 
 <ul>
-  <li>Download/Clone this repository</li>
-  <li>In your html file, load js files in lib directory: jquery.js(not included but use Google CDN), d3.js, d3.layout.cloud.js, easywordcloud.js(I made)</li>
-  <li>In your html or js file, use the function makeWordCloud function</li>
+  <li>Install by <a href = "http://bower.io/">bower</a>(at root directory of your project)
+  <pre><code><xmp>bower install d3-easy --save</xmp></code></pre></li>
+  <li>Download zip or tar file above</li>
+  <li>Clone this repository</li>
 </ul>
 
-<pre><code><xmp><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="lib/d3.js"></script>
-<script src="lib/d3.layout.cloud.js"></script>
-<script src = "lib/easywordcloud.js"></script></xmp></code></pre>
 <h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use</h3>
+<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Vidualization Patterns</h3>
 
 <ul>
-  <li>Load DOM at beginning of js script: <pre><code>$().ready(function(){ // write your code here })</code></pre>
-  <li>Prepare your data and make sure the format: <pre><code>data = [ {"word": String, "value": Number}, {...}, {...} ]</code></pre></li>
-  <li>Call the makeWordCloud function(simplest version): <pre><code>window.makeWordCloud(data, css selector, size of svg)</code></pre>
+  <li>
+  <h3><a href = "http://kyu999.github.io/d3-easy/wordcloud.html">WordCloud</a></h3>
+    <br>
+    A word cloud (tag cloud, or weighted list in visual design) is a visual representation for text data, typically used to depict keyword metadata (tags) on websites, or to visualize free form text. Tags are usually single words, and the importance of each tag is shown with font size or color. This format is useful for quickly perceiving the most prominent terms and for locating a term alphabetically to determine its relative prominence. When used as website navigation aids, the terms are hyperlinked to items associated with the tag.
+    <br>
+    <div id = "notebook"></div>
   </li>
-  <li>Call the makeWordCloud function(with more options): <pre><code>window.makeWordCloud(data, css_selector, svgscale, svg_class, font-family, rotate words or not, color converting function)</code></pre></li>
+
+  <li>
+    <h3>Hierarchical Edge Bundling</h3>
+    <br>
+
+    <div id = "hierarchy"></div>
+    
+    <br>
+  </li>
   </ul>
 
-<p>Below is the simplest case, but be careful. EasyWordCloud uses the svg class name as an identifier. If you do not give name to your svg, easywordcloud automatically think all "svg" as wordcluod canvas. So, it may updates or destroy the other svgs. I recommend to name it. Also, when you wanna create another wordcloud at same time, they should be named separately. Do not give them same names.</p>
-
-<pre><code>// simple example
-
-$().ready(function(){
-
-    data = [
-        {"word": "田中", "value": 3}, 
-        {"word": "太郎", "value": 13}, 
-        {"word": "西尾", "value": 8},
-    ]
-    
-    window.makeWordCloud(data, "body", 200)
-
-})
-</code></pre>
-
-<p>With more options</p>
-
-<pre><code>// more option example
-
-$().ready(function(){
-
-    data = [
-        {"word": "田中", "value": 3}, 
-        {"word": "太郎", "value": 13}, 
-        {"word": "西尾", "value": 8},
-    ]
-
-    var my_color = d3.scale.category20();
-
-    window.makeWordCloud(data, "body", 500, "my_svg", "Impact", true, my_color)
-
-})
-</code></pre>
-
 <h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Parameters Format</h3>
-
-<table>
-  <tr><th>Parameter</th><th>Must Or Not</th><th>Type of Format</th><th>Example</th></tr>
-  <tr><td>Data</td><td>Must</td><td>[ {"word": String, "value": Number}, {...}, {...} ]<td>[
-        {"word": "田中", "value": 3}, 
-        {"word": "太郎", "value": 13}, 
-        {"word": "西尾", "value": 8},
-    ]</td></tr>
-  <tr><td>Css Selector</td><td>Must</td><td>String<td>"#my_id_dom", ".my_class_dom"</td></tr>
-  <tr><td>Svg Scale</td><td>Must</td><td>Number<td>500</td></tr>
-  <tr><td>Svg Class Name</td><td>Optional</td><td>string but not css selector<td>"my_dom"</td></tr>
-  <tr><td>Font Family</td><td>Optional</td><td>String<td>"Impact"</td></tr>
-  <tr><td>Rotate Words Or Not</td><td>Optional</td><td>Boolean<td>true, false</td></tr>
-  <tr><td>Color Converting Function</td><td>Optional</td><td>function(number){ return some color code as string; }<td>function MyColoring(i){ if(i > 0){ return "#696969"; }else{ return "#f0f8ff"; }</td></tr>
-</table>
-
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>For More Details</h3>
-
-<p>To see whole the example, please check out demo.html and demo.js</p>
+<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://github.com/kyu999/EasyWordCloud">View on GitHub</a>
+</h3>
       </section>
 
       <footer>
@@ -151,4 +105,12 @@ $().ready(function(){
 
     
   </body>
+
+    <script src="bower_components/d3/d3.js"></script>
+    <script src="bower_components/d3.layout.cloud/d3.layout.cloud.js"></script>
+    <script src = "bower_components/d3-easy/wordcloud/easywordcloud.js"></script>
+    <script src = "bower_components/d3-easy/wordcloud/demo.js"></script>
+    <script src = "bower_components/d3-easy/hierarchical_edge/easyhierarchy.js"></script>
+    <script src = "bower_components/d3-easy/hierarchical_edge/demo.js"></script>
+
 </html>

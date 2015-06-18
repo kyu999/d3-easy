@@ -1,4 +1,4 @@
-function makeHierarchicalEdge(classes, innerRadius, thickness, minFont, maxFont, nodehover_color, dom_classes){
+function makeHierarchicalEdge(classes, innerRadius, thickness, minFont, maxFont, dom_classes){
 
   if(dom_classes == null){
 
@@ -144,6 +144,5 @@ function makeHierarchicalEdge(classes, innerRadius, thickness, minFont, maxFont,
 /*
 
 the size value of classes did not work. so i deleted.
-packageHierarchy(classes) is not important if this script does not use "." as separator of layer, so deleted
 
 */

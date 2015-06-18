@@ -45,4 +45,4 @@ var dom_classes = {
 
 //makeHierarchicalEdge(data, 300, 200, 10, 30, "white")
 
-makeHierarchicalEdge(data, 300, 200, 10, 30, "white", dom_classes)
+makeHierarchicalEdge(data, 300, 200, 10, 30, dom_classes)

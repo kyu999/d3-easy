@@ -58,7 +58,7 @@ function makeHierarchicalEdge(classes, innerRadius, thickness, minFont, maxFont,
         .attr("dy", ".31em")
         .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
         .style("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
-        .style("font-size", function(d) { /*console.log(d); */ return sizeScale(d.imports.length) + "px"; })        
+        .style("font-size", function(d) { return sizeScale(d.imports.length) + "px"; })        
         .text(function(d) { return d.key; })
         .on("mouseover", mouseovered)
         .on("mouseout", mouseouted);
@@ -68,8 +68,8 @@ function makeHierarchicalEdge(classes, innerRadius, thickness, minFont, maxFont,
         .each(function(n) { n.target = n.source = false; });
 
     link
-        .classed(dom_classes["out_link"], function(l) { if (l.target === d) return l.source.source = true; })
-        .classed(dom_classes["in_link"], function(l) { if (l.source === d) return l.target.target = true; })
+        .classed(dom_classes["in_link"], function(l) { if (l.target === d) return l.source.source = true; })
+        .classed(dom_classes["out_link"], function(l) { if (l.source === d) return l.target.target = true; })
       .filter(function(l) { return l.target === d || l.source === d; })
         .each(function() { this.parentNode.appendChild(this); });
 
@@ -80,8 +80,8 @@ function makeHierarchicalEdge(classes, innerRadius, thickness, minFont, maxFont,
 
   function mouseouted(d) {
     link
-        .classed(dom_classes["out_link"], false)
-        .classed(dom_classes["in_link"], false);
+        .classed(dom_classes["in_link"], false)
+        .classed(dom_classes["out_link"], false);
 
     node
         .classed(dom_classes["out_node"], false)
@@ -136,13 +136,11 @@ function makeHierarchicalEdge(classes, innerRadius, thickness, minFont, maxFont,
 
 }
 
-
-
-
-
-
-/*
-
-the size value of classes did not work. so i deleted.
-
-*/
+function randomize(amount_max, value_max, gradually){
+    var amount = Math.floor(Math.random() * amount_max)
+    var gene_func = function(i){ return Math.floor(Math.random() * value_max) }
+    if(gradually){
+        gene_func = function(i){ return i }
+    }
+    return Array.apply(null, Array(amount)).map(function (_, i) { return i })
+}

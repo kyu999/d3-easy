@@ -1,11 +1,3 @@
-d3.json("demo.json", function(error, classes) {
-
-  if (error) throw error;
-  //console.log("class amount is " + classes.length)
-  //makeHierarchicalEdge(classes, 960)
-
-})
-
 var data = [
 // {"name":"X","size":3,"imports":["dlkfd;sakjdsa;l"]},
 // like above, if the data contains not existing pointer, it ruins everything. Need to validation, and throw error if find weired data or we can change to ignoring
@@ -23,16 +15,14 @@ var data = [
 {"name":"suzuki3","imports":["tanaka", "higashi"]},
 {"name":"toudou3","imports":["tanaka", "higashi", "suzuki"]},
 {"name":"tanaka4","imports":["higashi"]},
-{"name":"higashi4","imports":["suzuki","toudou"]},
+{"name":"higashi4","imports":["suzuki","toudou3"]},
 {"name":"suzuki4","imports":["tanaka", "higashi"]},
 {"name":"toudou4","imports":["tanaka", "higashi", "suzuki"]},
 {"name":"tanaka5","imports":["higashi"]},
-{"name":"higashi5","imports":["suzuki","toudou"]},
+{"name":"higashi5","imports":["suzuki","toudou4"]},
 {"name":"suzuki5","imports":["tanaka", "higashi"]},
 {"name":"0XXXXXXXXXXXXXX0","imports":["tanaka", "higashi", "suzuki"]}
 ]
-
-console.log(data)
 
 var dom_classes = {
       "node": "node_default",
@@ -43,6 +33,4 @@ var dom_classes = {
       "out_link": "linking"
     }
 
-//makeHierarchicalEdge(data, 300, 200, 10, 30, "white")
-
-makeHierarchicalEdge(data, 300, 200, 10, 30, dom_classes)
+makeHierarchicalEdge(data, 300, 200, 15, 15, dom_classes)

@@ -20,8 +20,7 @@ var data = [
 {"name":"toudou4","imports":["tanaka", "higashi", "suzuki"]},
 {"name":"tanaka5","imports":["higashi"]},
 {"name":"higashi5","imports":["suzuki","toudou4"]},
-{"name":"suzuki5","imports":["tanaka", "higashi"]},
-{"name":"0XXXXXXXXXXXXXX0","imports":["tanaka", "higashi", "suzuki"]}
+{"name":"suzuki5","imports":["tanaka", "higashi"]}
 ]
 
 var dom_classes = {
@@ -33,4 +32,4 @@ var dom_classes = {
       "out_link": "linking"
     }
 
-makeHierarchicalEdge(data, 300, 200, 15, 15, dom_classes)
+makeHierarchicalEdge(data, 200, 200, 15, 15, dom_classes)

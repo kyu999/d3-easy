@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640">
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>d3-easy by kyu999</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/kyu999/EasyWordCloud">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>d3-easy</h1>
+            <h2></h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/kyu999/d3-easy/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/kyu999/d3-easy/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h3>
+<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Generate Hierarchical Edge Bundling</h3>
+
+  <p>Hierarchical Edge Bundling is the best way to vidualize interactive relationships. The base is created by mbostock. The purpose of this library is giving you the way to vidualize data without knowledge of d3.js. <br><a href = "http://bl.ocks.org/mbostock/7607999">=> Original Codes of mbostock</a></p>
+
+<h3>
+<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Preparation</h3>
+
+<ul>
+  <li>Install d3-easy by <a href = "http://bower.io/">bower</a> at root directory of your project or download zip file
+  <pre><code><xmp>bower install d3-easy --save</xmp></code></pre></li>
+  <li>In your html file, load js files in lib directory
+  <pre><code><xmp><script src="jquery.min.js"></script>
+<script src="d3.js"></script>
+<script src = "easyhierarchy.js"></script></xmp></code></pre>
+
+  </li>
+  <li>In your html or js file, use the function makeHierarchicalEdge function</li>
+</ul>
+
+<h3>
+<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use</h3>
+
+<ul>
+  <li>Prepare your data and make sure the format: <pre><code>data = [{"name":"some name","imports":["pointer name 1", "pointer name 2"]}, ... ]
+</code></pre></li>
+  <li>Create css file that includes each classes. You can modify class names by giving dom classes parameter to makeHierarchicalEdge function later.
+  <pre><code>// in js file
+  dom_classes = {
+      "node": "node_default",
+      "link": "link_default",
+      "in_node": "linked_node",
+      "out_node": "linking_node",
+      "in_link": "linked",
+      "out_link": "linking"
+    }
+</code></pre>
+<pre><code>// in css file
+.node_default {
+  font: 300 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  fill: #bbb;
+}
+
+.node_default:hover {
+  fill: #000;
+}
+
+.link_default {
+  stroke: steelblue;
+  stroke-opacity: .4;
+  fill: none;
+  pointer-events: none;
+}
+
+.node_default:hover,
+.linked_node,
+.linking_node {
+  font-weight: 700;
+}
+
+.linked_node {
+  fill: #2ca02c;
+}
+
+.linking_node {
+  fill: #d62728;
+}
+
+.linked,
+.linking {
+  stroke-opacity: 1;
+  stroke-width: 2px;
+}
+
+.linked {
+  stroke: #d62728;
+}
+
+.linking {
+  stroke: #2ca02c;
+}
+</code></pre>
+  </li>
+  <li>Call the makeHierarchicalEdge function<pre><code>makeHierarchicalEdge(data, innerRadius, thickness, minFont, maxFont, dom_classes)</code></pre></li>
+  </ul>
+
+<p>Below is the simplest case, but be careful. makeHierarchicalEdge would fail if your pointer name does not exist. Please make sure all the names in imports exist in the name list.</p>
+
+<pre><code>// simple example
+var data = [
+  {"name":"tanaka","imports":["higashi"]},
+  {"name":"higashi","imports":["suzuki","toudou"]},
+  {"name":"suzuki","imports":["tanaka", "higashi"]},
+  {"name":"toudou","imports":["tanaka", "higashi", "suzuki"]}
+]
+
+makeHierarchicalEdge(data, 300, 200, 10, 30)</code></pre>
+
+<p>With more options</p>
+
+<pre><code>// more option example
+var data = [
+  {"name":"tanaka","imports":["higashi"]},
+  {"name":"higashi","imports":["suzuki","toudou"]},
+  {"name":"suzuki","imports":["tanaka", "higashi"]},
+  {"name":"toudou","imports":["tanaka", "higashi", "suzuki"]}
+]
+
+var dom_classes = {
+      "node": "node_default",
+      "link": "link_default",
+      "in_node": "linked_node",
+      "out_node": "linking_node",
+      "in_link": "linked",
+      "out_link": "linking"
+    }
+
+makeHierarchicalEdge(data, 300, 200, 10, 30, dom_classes)
+</code></pre>
+
+<h3>
+<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Parameters Format</h3>
+
+<table>
+  <tr><th>Parameter</th><th>Must Or Not</th><th>Type of Format</th></tr>
+  <tr><td>Data</td><td>Must</td><td>[ {"name": String, "imports": [string, ...]}, {...}, {...} ]</td></tr>
+  <tr><td>innerRadius</td><td>Must</td><td>integer</td></tr>
+  <tr><td>thickness(outer radius - inner radius)</td><td>Must</td><td>integer</td></tr>
+  <tr><td>minFont</td><td>Must</td><td>integer</td></tr>
+  <tr><td>maxFont</td><td>Must</td><td>integer</td></tr>
+  <tr><td>dom classes</td><td>Must</td><td>{
+      "node": string,
+      "link": string,
+      "in_node": string,
+      "out_node": string,
+      "in_link": string,
+      "out_link": string
+    }</td></tr>
+  
+</table>
+
+<h3>
+<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>For More Details</h3>
+
+<p>To see whole the example, please check out demo.html and demo.js</p>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/kyu999">kyu999</a> can be found on <a href="https://github.com/kyu999/d3-easy">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>

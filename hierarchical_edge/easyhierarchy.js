@@ -135,12 +135,3 @@ function makeHierarchicalEdge(classes, innerRadius, thickness, minFont, maxFont,
   }
 
 }
-
-function randomize(amount_max, value_max, gradually){
-    var amount = Math.floor(Math.random() * amount_max)
-    var gene_func = function(i){ return Math.floor(Math.random() * value_max) }
-    if(gradually){
-        gene_func = function(i){ return i }
-    }
-    return Array.apply(null, Array(amount)).map(function (_, i) { return i })
-}
